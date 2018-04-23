@@ -8,27 +8,21 @@ val MathTopic = TopicStruct(
     "Math",
     "Welcome! Get ready to test some of your math skills with basic arithmetic.",
     4,
-    getMathTopic(),
-    0,
-    0
+    getMathTopic()
 )
 
 val PhysicsTopic = TopicStruct(
     "Physics",
     "Welcome! Get ready to test some of your physics knowledge!",
     4,
-    getPhysicsTopic(),
-    0,
-    0
+    getPhysicsTopic()
 )
 
 val MarvelTopic = TopicStruct(
     "Marvel Super Heroes",
     "Welcome! Who doesn't love superheroes? It is time to test what you know about the heroes in the Marvel Universe.",
     4,
-    getMarvelTopic(),
-    0,
-    0
+    getMarvelTopic()
 )
 
 fun getMathTopic(): List<QuestionStruct> {
@@ -141,7 +135,7 @@ fun getMarvelTopic(): List<QuestionStruct> {
 
     val q4 = QuestionStruct(
         "Which is not an Infinity Stone?",
-        "",
+        "Brain Stone",
         "Time Stone",
         "Space Stone",
         "Brain Stone",

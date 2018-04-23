@@ -14,20 +14,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         MathCard.setOnClickListener {
-            val intent = Intent(this, IntroductionActivity::class.java).apply {
+            var intent = Intent(this, IntroductionActivity::class.java).apply {
                 putExtra("topic", getTopic(math))
             }
             startActivity(intent)
         }
 
         PhysicsCard.setOnClickListener {
-            val intent = Intent(this, IntroductionActivity::class.java).apply {
+            var intent = Intent(this, IntroductionActivity::class.java).apply {
                 putExtra("topic", getTopic(physics))
             }
             startActivity(intent)
         }
         MarvelCard.setOnClickListener {
-            val intent = Intent(this, IntroductionActivity::class.java).apply {
+            var intent = Intent(this, IntroductionActivity::class.java).apply {
                 putExtra("topic", getTopic(marvel))
             }
             startActivity(intent)

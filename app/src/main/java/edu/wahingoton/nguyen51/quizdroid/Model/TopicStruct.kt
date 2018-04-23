@@ -6,7 +6,8 @@ data class TopicStruct (
     val name: String,
     val description: String,
     val questionCount: Int,
-    val questions: List<QuestionStruct>,
-    val correct: Int,
-    val qIndex: Int
-) : Serializable
+    val questions: List<QuestionStruct>
+) : Serializable {
+    var correct: Int = 0
+    var qIndex: Int = 0
+}

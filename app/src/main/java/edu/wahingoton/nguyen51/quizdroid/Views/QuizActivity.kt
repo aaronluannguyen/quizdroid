@@ -1,8 +1,10 @@
 package edu.wahingoton.nguyen51.quizdroid.Views
 
+import android.content.Intent
 import edu.wahingoton.nguyen51.quizdroid.R
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import edu.wahingoton.nguyen51.quizdroid.Controller.handleAnswerSubmit
 import edu.wahingoton.nguyen51.quizdroid.Model.TopicStruct
 import kotlinx.android.synthetic.main.activity_quiz.*
 
@@ -17,7 +19,13 @@ class QuizActivity : AppCompatActivity() {
         setQuizScreen(topic)
 
         btnSubmit.setOnClickListener {
+            val answer = handleAnswerSubmit(choice1,choice2, choice3, choice4)
 
+            val intent = Intent(this, AnswerActivity::class.java).apply {
+                putExtra("topic", topic)
+                putExtra("answer", answer)
+            }
+            startActivity(intent)
         }
     }
 
