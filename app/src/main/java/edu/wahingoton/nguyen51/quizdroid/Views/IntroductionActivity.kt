@@ -15,9 +15,7 @@ class IntroductionActivity : AppCompatActivity() {
 
         val topic: TopicStruct = intent.getSerializableExtra("topic") as TopicStruct
 
-        IntroTopic.setText("Quiz Topic: " + topic.name)
-        IntroDesc.setText(topic.description)
-        IntroQTotal.setText("Total Number of Questions: " + topic.questionCount.toString())
+        setIntroScreen(topic)
 
         btnBegin.setOnClickListener{
             val intent = Intent(this, QuizActivity::class.java).apply {
@@ -25,5 +23,11 @@ class IntroductionActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
+    }
+
+    fun setIntroScreen(topic: TopicStruct) {
+        IntroTopic.setText("Quiz Topic: " + topic.name)
+        IntroDesc.setText(topic.description)
+        IntroQTotal.setText("Total Number of Questions: " + topic.questionCount.toString())
     }
 }

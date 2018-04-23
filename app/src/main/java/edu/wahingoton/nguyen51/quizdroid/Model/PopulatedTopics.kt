@@ -9,6 +9,7 @@ val MathTopic = TopicStruct(
     "Welcome! Get ready to test some of your math skills with basic arithmetic.",
     4,
     getMathTopic(),
+    0,
     0
 )
 
@@ -17,6 +18,7 @@ val PhysicsTopic = TopicStruct(
     "Welcome! Get ready to test some of your physics knowledge!",
     4,
     getPhysicsTopic(),
+    0,
     0
 )
 
@@ -25,6 +27,7 @@ val MarvelTopic = TopicStruct(
     "Welcome! Who doesn't love superheroes? It is time to test what you know about the heroes in the Marvel Universe.",
     4,
     getMarvelTopic(),
+    0,
     0
 )
 
