@@ -1,5 +1,6 @@
 package edu.wahingoton.nguyen51.quizdroid.Views
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import edu.wahingoton.nguyen51.quizdroid.Controller.*
@@ -12,8 +13,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        MathCard.setOnClickListener { handleTopicSelect(math) }
-        PhysicsCard.setOnClickListener { handleTopicSelect(physics) }
-        MarvelCard.setOnClickListener { handleTopicSelect(marvel) }
+        MathCard.setOnClickListener {
+            val intent = Intent(this, IntroductionActivity::class.java).apply {
+                putExtra("topic", getTopic(math))
+            }
+            startActivity(intent)
+        }
+
+        PhysicsCard.setOnClickListener {
+            val intent = Intent(this, IntroductionActivity::class.java).apply {
+                putExtra("topic", getTopic(physics))
+            }
+            startActivity(intent)
+        }
+        MarvelCard.setOnClickListener {
+            val intent = Intent(this, IntroductionActivity::class.java).apply {
+                putExtra("topic", getTopic(marvel))
+            }
+            startActivity(intent)
+        }
     }
 }

@@ -8,31 +8,25 @@ val MathTopic = TopicStruct(
     "Math",
     "Welcome! Get ready to test some of your math skills with basic arithmetic.",
     4,
-    getMathTopic()
+    getMathTopic(),
+    0
 )
 
 val PhysicsTopic = TopicStruct(
     "Physics",
     "Welcome! Get ready to test some of your physics knowledge!",
     4,
-    getPhysicsTopic()
+    getPhysicsTopic(),
+    0
 )
 
 val MarvelTopic = TopicStruct(
     "Marvel Super Heroes",
     "Welcome! Who doesn't love superheroes? It is time to test what you know about the heroes in the Marvel Universe.",
     4,
-    getMarvelTopic()
+    getMarvelTopic(),
+    0
 )
-
-fun getTopicAndQs(name: String): TopicStruct {
-    when (name) {
-        math -> return MathTopic
-        physics -> return PhysicsTopic
-        marvel -> return MarvelTopic
-    }
-    return null!!
-}
 
 fun getMathTopic(): List<QuestionStruct> {
     val q1 = QuestionStruct(

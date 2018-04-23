@@ -1,22 +1,17 @@
 package edu.wahingoton.nguyen51.quizdroid.Controller
 
+import edu.wahingoton.nguyen51.quizdroid.Model.TopicStruct
+import edu.wahingoton.nguyen51.quizdroid.Model.getTopicStruct
+
 const val math = "math"
 const val physics = "physics"
 const val marvel = "marvel"
 
-fun getTopic(name: String): String {
+fun getTopic(name: String): TopicStruct {
     when (name) {
-        math -> return math
-        physics -> return physics
-        marvel -> return marvel
+        math -> return getTopicStruct(math)
+        physics -> return getTopicStruct(physics)
+        marvel -> return getTopicStruct(marvel)
     }
-    return ""
+    return null!!
 }
-
-fun handleTopicSelect(name: String) {
-    val topic = getTopic(name)
-    if (!topic.isEmpty()) {
-
-    }
-}
-
