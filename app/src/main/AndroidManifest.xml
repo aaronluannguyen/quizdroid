@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Views.InQuizActivity"
+            android:label="@string/title_activity_in_quiz"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Views.QuizActivity"></activity>
     </application>
 
 </manifest>
