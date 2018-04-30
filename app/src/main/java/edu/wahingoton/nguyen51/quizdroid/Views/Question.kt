@@ -44,6 +44,7 @@ class Question : Fragment() {
         super.onStart()
         val question = this.topic?.questions
         val curr = this.topic?.qIndex
+        btnSubmit.isClickable = false
         Question.setText(question?.get(topic?.qIndex as Int)?.question)
         choice1.setText(question?.get(curr as Int)?.choice1)
         choice2.setText(question?.get(curr as Int)?.choice2)
@@ -52,7 +53,10 @@ class Question : Fragment() {
 
         btnSubmit.setOnClickListener {
             val answer = handleAnswerSubmit(choice1,choice2, choice3, choice4)
-            listener?.toAnswerFragment(this.topic, answer)
+            if (answer != "") {
+                btnSubmit.isClickable = true
+                listener?.toAnswerFragment(this.topic, answer)
+            }
         }
     }
 
