@@ -3,16 +3,15 @@ package edu.wahingoton.nguyen51.quizdroid.Views
 import android.content.Context
 import android.os.Bundle
 import android.app.Fragment
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import edu.wahingoton.nguyen51.quizdroid.Controller.handleAnswerSubmit
 import edu.wahingoton.nguyen51.quizdroid.Model.TopicStruct
 
 import edu.wahingoton.nguyen51.quizdroid.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val TOPIC = "topic"
+import kotlinx.android.synthetic.main.activity_quiz.*
 
 /**
  * A simple [Fragment] subclass.
@@ -41,6 +40,22 @@ class Question : Fragment() {
         return inflater.inflate(R.layout.activity_quiz, container, false)
     }
 
+    override fun onStart() {
+        super.onStart()
+        val question = this.topic?.questions
+        val curr = this.topic?.qIndex
+        Question.setText(question?.get(topic?.qIndex as Int)?.question)
+        choice1.setText(question?.get(curr as Int)?.choice1)
+        choice2.setText(question?.get(curr as Int)?.choice2)
+        choice3.setText(question?.get(curr as Int)?.choice3)
+        choice4.setText(question?.get(curr as Int)?.choice4)
+
+        btnSubmit.setOnClickListener {
+            val answer = handleAnswerSubmit(choice1,choice2, choice3, choice4)
+            listener?.toAnswerFragment(this.topic, answer)
+        }
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
@@ -67,7 +82,6 @@ class Question : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-
+        fun toAnswerFragment(topic: TopicStruct?, answer: String)
     }
 }

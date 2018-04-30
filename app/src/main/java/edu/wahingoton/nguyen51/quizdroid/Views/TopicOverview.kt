@@ -11,10 +11,6 @@ import edu.wahingoton.nguyen51.quizdroid.Model.TopicStruct
 import edu.wahingoton.nguyen51.quizdroid.R
 import kotlinx.android.synthetic.main.activity_introduction.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val TOPIC = "topic"
-
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
@@ -45,8 +41,11 @@ class TopicOverview : Fragment() {
     override fun onStart() {
         super.onStart()
         IntroTopic.setText("Quiz Topic: " + this.topic?.name)
-        IntroDesc.setText(topic?.description)
-        IntroQTotal.setText("Total Number of Questions: " + topic?.questionCount.toString())
+        IntroDesc.setText(this.topic?.description)
+        IntroQTotal.setText("Total Number of Questions: " + this.topic?.questionCount.toString())
+        btnBegin.setOnClickListener{
+            listener?.startQuizFrag(this.topic)
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -75,6 +74,6 @@ class TopicOverview : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+        fun startQuizFrag(topic: TopicStruct?)
     }
 }

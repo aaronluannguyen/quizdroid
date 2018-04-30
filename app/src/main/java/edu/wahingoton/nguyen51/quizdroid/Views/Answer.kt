@@ -6,13 +6,11 @@ import android.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import edu.wahingoton.nguyen51.quizdroid.Controller.updateCorrectCount
 import edu.wahingoton.nguyen51.quizdroid.Model.TopicStruct
 
 import edu.wahingoton.nguyen51.quizdroid.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val TOPIC = "topic"
+import kotlinx.android.synthetic.main.activity_answer.*
 
 /**
  * A simple [Fragment] subclass.
@@ -26,12 +24,14 @@ private const val TOPIC = "topic"
 class Answer : Fragment() {
     // TODO: Rename and change types of parameters
     private var topic: TopicStruct? = null
+    private var uAnswer: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             topic = it.getSerializable("topic") as TopicStruct
+            uAnswer = it.getString("answer") as String
         }
     }
 
@@ -39,6 +39,30 @@ class Answer : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.activity_answer, container, false)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        var correctAnswer = this.topic?.questions?.get(topic?.qIndex as Int)?.correctAnswer
+        CorrectAnswer.setText("Correct Answer: " + correctAnswer)
+        UserAnswer.setText("Your Answer: " + uAnswer)
+
+        updateCorrectCount(topic as TopicStruct, correctAnswer as String, uAnswer as String)
+
+        CorrectVsTotal.setText("You have " + topic?.correct.toString() + " out of " + (topic?.qIndex as Int + 1).toString() + " correct!")
+
+        if (topic?.qIndex == topic?.questions?.size as Int - 1) {
+            btnNextFinish.setText("Finish")
+        }
+
+        btnNextFinish.setOnClickListener {
+            if (btnNextFinish.text == "Next") {
+                this.topic?.qIndex = this.topic?.qIndex as Int + 1
+                listener?.startQuizFrag(this.topic)
+            } else {
+                listener?.finishQuiz()
+            }
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -67,7 +91,7 @@ class Answer : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-
+        fun startQuizFrag(topic: TopicStruct?)
+        fun finishQuiz()
     }
 }
