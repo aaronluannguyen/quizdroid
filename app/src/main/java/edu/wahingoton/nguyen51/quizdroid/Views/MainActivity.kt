@@ -14,20 +14,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         MathCard.setOnClickListener {
-            var intent = Intent(this, IntroductionActivity::class.java).apply {
+            val intent = Intent(this, QuizFragmentsActivity::class.java).apply {
                 putExtra("topic", getTopic(math))
             }
             startActivity(intent)
         }
 
         PhysicsCard.setOnClickListener {
-            var intent = Intent(this, IntroductionActivity::class.java).apply {
+            val intent = Intent(this, QuizFragmentsActivity::class.java).apply {
                 putExtra("topic", getTopic(physics))
             }
             startActivity(intent)
         }
         MarvelCard.setOnClickListener {
-            var intent = Intent(this, IntroductionActivity::class.java).apply {
+            val intent = Intent(this, QuizFragmentsActivity::class.java).apply {
                 putExtra("topic", getTopic(marvel))
             }
             startActivity(intent)
