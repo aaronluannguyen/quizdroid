@@ -22,7 +22,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Views.QuizActivity" />
         <activity android:name=".Views.IntroductionActivity" />
-        <activity android:name=".Views.AnswerActivity"></activity>
+        <activity android:name=".Views.AnswerActivity" />
+        <activity android:name=".Views.QuizFragmentsActivity"></activity>
     </application>
 
 </manifest>
