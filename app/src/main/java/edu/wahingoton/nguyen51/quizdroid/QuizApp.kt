@@ -8,4 +8,6 @@ class QuizApp : Application() {
         super.onCreate()
         Log.i("QuizApp Status", "QuizApp loaded and running...")
     }
+
+
 }
