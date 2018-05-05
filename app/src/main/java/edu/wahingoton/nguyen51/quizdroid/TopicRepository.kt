@@ -1,8 +1,22 @@
 package edu.wahingoton.nguyen51.quizdroid
 
+import edu.wahingoton.nguyen51.quizdroid.Controller.marvel
+import edu.wahingoton.nguyen51.quizdroid.Controller.math
+import edu.wahingoton.nguyen51.quizdroid.Controller.physics
 import java.io.Serializable
 
-interface TopicRepository {
+interface   TopicRepository {
+    companion object {
+        fun getQuizFromRepo(name: String): Quiz {
+            when (name) {
+                math -> return //Find way to access each quiz
+                physics -> return
+                marvel -> return
+            }
+            return null!!
+        }
+    }
+
     data class Quiz (
             val title: String,
             val shortDescription: String,
