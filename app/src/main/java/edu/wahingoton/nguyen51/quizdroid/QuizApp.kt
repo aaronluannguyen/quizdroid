@@ -13,6 +13,11 @@ object QuizApp : Application() {
     }
 
     fun getQuiz(name: String): TopicRepository.Quiz {
-        return TopicRepository.getQuizFromRepo(name)
+        when (name) {
+            math -> return TopicRepository.MathQuiz
+            physics -> return TopicRepository.PhysicsQuiz
+            marvel -> return TopicRepository.MarvelQuiz
+        }
+        return null!!
     }
 }
