@@ -7,9 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import edu.wahingoton.nguyen51.quizdroid.Controller.updateCorrectCount
-import edu.wahingoton.nguyen51.quizdroid.Model.TopicStruct
-
 import edu.wahingoton.nguyen51.quizdroid.R
+import edu.wahingoton.nguyen51.quizdroid.TopicRepository
 import kotlinx.android.synthetic.main.activity_answer.*
 
 /**
@@ -23,14 +22,14 @@ import kotlinx.android.synthetic.main.activity_answer.*
  */
 class Answer : Fragment() {
     // TODO: Rename and change types of parameters
-    private var topic: TopicStruct? = null
+    private var topic: TopicRepository.Quiz? = null
     private var uAnswer: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            topic = it.getSerializable("topic") as TopicStruct
+            topic = it.getSerializable("topic") as TopicRepository.Quiz
             uAnswer = it.getString("answer") as String
         }
     }
@@ -47,7 +46,7 @@ class Answer : Fragment() {
         CorrectAnswer.setText("Correct Answer: " + correctAnswer)
         UserAnswer.setText("Your Answer: " + uAnswer)
 
-        updateCorrectCount(topic as TopicStruct, correctAnswer as String, uAnswer as String)
+        updateCorrectCount(topic as TopicRepository.Quiz, correctAnswer as String, uAnswer as String)
 
         CorrectVsTotal.setText("You have " + topic?.correct.toString() + " out of " + (topic?.qIndex as Int + 1).toString() + " correct!")
 
@@ -91,7 +90,7 @@ class Answer : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        fun startQuizFrag(topic: TopicStruct?)
+        fun startQuizFrag(topic: TopicRepository.Quiz?)
         fun finishQuiz()
     }
 }

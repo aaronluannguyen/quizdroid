@@ -3,10 +3,8 @@ package edu.wahingoton.nguyen51.quizdroid.Views
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import edu.wahingoton.nguyen51.quizdroid.Controller.getTopic
-import edu.wahingoton.nguyen51.quizdroid.Controller.physics
-import edu.wahingoton.nguyen51.quizdroid.Model.TopicStruct
 import edu.wahingoton.nguyen51.quizdroid.R
+import edu.wahingoton.nguyen51.quizdroid.TopicRepository
 
 
 class QuizFragmentsActivity : AppCompatActivity(), TopicOverview.OnFragmentInteractionListener, Question.OnFragmentInteractionListener, Answer.OnFragmentInteractionListener {
@@ -15,7 +13,7 @@ class QuizFragmentsActivity : AppCompatActivity(), TopicOverview.OnFragmentInter
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_fragments)
 
-        val topic: TopicStruct = intent.getSerializableExtra("topic") as TopicStruct
+        val topic: TopicRepository.Quiz = intent.getSerializableExtra("topic") as TopicRepository.Quiz
         val topicBundle = Bundle()
         topicBundle.putSerializable("topic", topic)
         val topicOverviewFrag = TopicOverview()
@@ -26,7 +24,7 @@ class QuizFragmentsActivity : AppCompatActivity(), TopicOverview.OnFragmentInter
                 .commit()
     }
 
-    override fun startQuizFrag(topic: TopicStruct?) {
+    override fun startQuizFrag(topic: TopicRepository.Quiz?) {
         val topicBundle = Bundle()
         topicBundle.putSerializable("topic", topic)
         val questionFrag = Question()
@@ -37,7 +35,7 @@ class QuizFragmentsActivity : AppCompatActivity(), TopicOverview.OnFragmentInter
                 .commit()
     }
 
-    override fun toAnswerFragment(topic: TopicStruct?, answer: String) {
+    override fun toAnswerFragment(topic: TopicRepository.Quiz?, answer: String) {
         val topicBundle = Bundle()
         topicBundle.putSerializable("topic", topic)
         topicBundle.putString("answer", answer)

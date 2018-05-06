@@ -5,7 +5,7 @@ import edu.wahingoton.nguyen51.quizdroid.R
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import edu.wahingoton.nguyen51.quizdroid.Controller.updateCorrectCount
-import edu.wahingoton.nguyen51.quizdroid.Model.TopicStruct
+import edu.wahingoton.nguyen51.quizdroid.TopicRepository
 import kotlinx.android.synthetic.main.activity_answer.*
 
 class AnswerActivity : AppCompatActivity() {
@@ -14,7 +14,7 @@ class AnswerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
 
-        var topic: TopicStruct = intent.getSerializableExtra("topic") as TopicStruct
+        var topic: TopicRepository.Quiz = intent.getSerializableExtra("topic") as TopicRepository.Quiz
         var userAnswer = intent.getStringExtra("answer")
 
         setAnswerScreen(topic, userAnswer)
@@ -33,7 +33,7 @@ class AnswerActivity : AppCompatActivity() {
         }
     }
 
-    fun setAnswerScreen(topic: TopicStruct, uAnswer: String) {
+    fun setAnswerScreen(topic: TopicRepository.Quiz, uAnswer: String) {
         var correctAnswer = topic.questions.get(topic.qIndex).correctAnswer
         CorrectAnswer.setText("Correct Answer: " + correctAnswer)
         UserAnswer.setText("Your Answer: " + uAnswer)
