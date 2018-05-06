@@ -2,6 +2,7 @@ package edu.wahingoton.nguyen51.quizdroid.Controller
 
 import android.widget.RadioButton
 import edu.wahingoton.nguyen51.quizdroid.Model.TopicStruct
+import edu.wahingoton.nguyen51.quizdroid.TopicRepository
 
 fun handleAnswerSubmit(c1: RadioButton, c2: RadioButton, c3: RadioButton, c4: RadioButton): String {
     if (c1.isChecked) {
@@ -22,7 +23,7 @@ fun handleAnswerSubmit(c1: RadioButton, c2: RadioButton, c3: RadioButton, c4: Ra
     return ""
 }
 
-fun updateCorrectCount(topic: TopicStruct, correct: String, uAnswer: String) {
+fun updateCorrectCount(topic: TopicRepository.Quiz, correct: String, uAnswer: String) {
     if (correct == uAnswer) {
         topic.correct++
     }

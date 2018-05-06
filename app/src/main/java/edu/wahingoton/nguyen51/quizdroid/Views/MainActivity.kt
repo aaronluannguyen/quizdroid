@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setMainView()
+
         MathCard.setOnClickListener {
             val intent = Intent(this, QuizFragmentsActivity::class.java).apply {
                 putExtra("topic", QuizApp.MathQuiz)
@@ -32,5 +34,16 @@ class MainActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
+    }
+
+    fun setMainView() {
+        MathTitle.setText(QuizApp.MathQuiz.title)
+        MathShortDesc.setText(QuizApp.MathQuiz.shortDescription)
+
+        PhysicsTitle.setText(QuizApp.PhysicsQuiz.title)
+        PhysicsShortDesc.setText(QuizApp.PhysicsQuiz.shortDescription)
+
+        MarvelTitle.setText(QuizApp.MarvelQuiz.title)
+        MarvelShortDesc.setText(QuizApp.MarvelQuiz.shortDescription)
     }
 }

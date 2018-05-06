@@ -8,9 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import edu.wahingoton.nguyen51.quizdroid.Controller.handleAnswerSubmit
-import edu.wahingoton.nguyen51.quizdroid.Model.TopicStruct
-
 import edu.wahingoton.nguyen51.quizdroid.R
+import edu.wahingoton.nguyen51.quizdroid.TopicRepository
 import kotlinx.android.synthetic.main.activity_quiz.*
 
 /**
@@ -24,13 +23,13 @@ import kotlinx.android.synthetic.main.activity_quiz.*
  */
 class Question : Fragment() {
     // TODO: Rename and change types of parameters
-    private var topic: TopicStruct? = null
+    private var topic: TopicRepository.Quiz? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            topic = it.getSerializable("topic") as TopicStruct
+            topic = it.getSerializable("topic") as TopicRepository.Quiz
         }
     }
 
@@ -86,6 +85,6 @@ class Question : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        fun toAnswerFragment(topic: TopicStruct?, answer: String)
+        fun toAnswerFragment(topic: TopicRepository.Quiz?, answer: String)
     }
 }

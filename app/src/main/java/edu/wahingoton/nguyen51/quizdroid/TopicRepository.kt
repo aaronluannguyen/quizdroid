@@ -1,8 +1,5 @@
 package edu.wahingoton.nguyen51.quizdroid
 
-import edu.wahingoton.nguyen51.quizdroid.Controller.marvel
-import edu.wahingoton.nguyen51.quizdroid.Controller.math
-import edu.wahingoton.nguyen51.quizdroid.Controller.physics
 import java.io.Serializable
 
 interface   TopicRepository {

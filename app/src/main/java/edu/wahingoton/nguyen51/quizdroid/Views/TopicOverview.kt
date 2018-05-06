@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import edu.wahingoton.nguyen51.quizdroid.Model.TopicStruct
 
 import edu.wahingoton.nguyen51.quizdroid.R
+import edu.wahingoton.nguyen51.quizdroid.TopicRepository
 import kotlinx.android.synthetic.main.activity_introduction.*
 
 /**
@@ -22,13 +23,13 @@ import kotlinx.android.synthetic.main.activity_introduction.*
  */
 class TopicOverview : Fragment() {
     // TODO: Rename and change types of parameters
-    private var topic: TopicStruct? = null
+    private var topic: TopicRepository.Quiz? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            topic = it.getSerializable("topic") as TopicStruct
+            topic = it.getSerializable("topic") as TopicRepository.Quiz
         }
     }
 
@@ -40,8 +41,8 @@ class TopicOverview : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        IntroTopic.setText("Quiz Topic: " + this.topic?.name)
-        IntroDesc.setText(this.topic?.description)
+        IntroTopic.setText("Quiz Topic: " + this.topic?.title)
+        IntroDesc.setText(this.topic?.longDescription)
         IntroQTotal.setText("Total Number of Questions: " + this.topic?.questionCount.toString())
         btnBegin.setOnClickListener{
             listener?.startQuizFrag(this.topic)
@@ -74,6 +75,6 @@ class TopicOverview : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        fun startQuizFrag(topic: TopicStruct?)
+        fun startQuizFrag(topic: TopicRepository.Quiz?)
     }
 }
