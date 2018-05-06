@@ -3,7 +3,7 @@ package edu.wahingoton.nguyen51.quizdroid.Views
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import edu.wahingoton.nguyen51.quizdroid.Controller.*
+import edu.wahingoton.nguyen51.quizdroid.QuizApp
 import edu.wahingoton.nguyen51.quizdroid.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,20 +15,20 @@ class MainActivity : AppCompatActivity() {
 
         MathCard.setOnClickListener {
             val intent = Intent(this, QuizFragmentsActivity::class.java).apply {
-                putExtra("topic", getTopic(math))
+                putExtra("topic", QuizApp.MathQuiz)
             }
             startActivity(intent)
         }
 
         PhysicsCard.setOnClickListener {
             val intent = Intent(this, QuizFragmentsActivity::class.java).apply {
-                putExtra("topic", getTopic(physics))
+                putExtra("topic", QuizApp.PhysicsQuiz)
             }
             startActivity(intent)
         }
         MarvelCard.setOnClickListener {
             val intent = Intent(this, QuizFragmentsActivity::class.java).apply {
-                putExtra("topic", getTopic(marvel))
+                putExtra("topic", QuizApp.MarvelQuiz)
             }
             startActivity(intent)
         }
