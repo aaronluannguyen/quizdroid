@@ -1,10 +1,19 @@
 package edu.wahingoton.nguyen51.quizdroid
 
-import android.util.JsonReader
-import org.json.JSONException
-import org.json.JSONObject
-import java.io.File
+import java.io.Serializable
 
-fun fromJSONToQuiz(file: File) {
+data class JsonQuizzes (
+    val quizzes: Array<JsonQuiz>?
+)
 
-}
+data class JsonQuiz (
+    val title: String?,
+    val desc: String?,
+    val questions: List<JsonQuestion>?
+): Serializable
+
+data class JsonQuestion (
+    val question: String?,
+    val correctAnswer: Int?,
+    val answers: Array<String>?
+): Serializable
