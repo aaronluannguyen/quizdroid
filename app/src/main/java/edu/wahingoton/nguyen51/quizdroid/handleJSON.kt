@@ -2,10 +2,6 @@ package edu.wahingoton.nguyen51.quizdroid
 
 import java.io.Serializable
 
-data class JsonQuizzes (
-    val quizzes: Array<JsonQuiz>?
-)
-
 data class JsonQuiz (
     val title: String?,
     val desc: String?,

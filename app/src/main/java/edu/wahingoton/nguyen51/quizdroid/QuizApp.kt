@@ -29,9 +29,7 @@ class QuizApp : Application() {
         }
 
         val gson = Gson()
-        val quizzes: JsonQuiz = gson.fromJson(file.reader(), JsonQuiz::class.java)
-
-        Log.i("BTN", quizzes.toString())
+        val quizzes: Array<JsonQuiz> = gson.fromJson(file.reader(), Array<JsonQuiz>::class.java)
     }
 
     // Might not need this function
