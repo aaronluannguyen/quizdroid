@@ -2,7 +2,7 @@ package edu.wahingoton.nguyen51.quizdroid
 
 import java.io.Serializable
 
-interface   TopicRepository {
+interface TopicRepository {
     companion object {
         val MathQuiz: Quiz
             get() = Quiz(

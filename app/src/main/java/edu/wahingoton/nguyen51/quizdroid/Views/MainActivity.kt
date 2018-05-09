@@ -1,9 +1,13 @@
 package edu.wahingoton.nguyen51.quizdroid.Views
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.widget.Toast
 import edu.wahingoton.nguyen51.quizdroid.QuizApp
 import edu.wahingoton.nguyen51.quizdroid.R
@@ -16,9 +20,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var dir: File = Environment.getExternalStorageDirectory()
         var file = File("/sdcard/questions.json")
-
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "HERE", Toast.LENGTH_LONG).show()
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+        }
 
         setMainView()
 
