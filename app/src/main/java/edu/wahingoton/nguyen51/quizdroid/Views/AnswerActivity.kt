@@ -7,12 +7,14 @@ import android.os.Bundle
 import edu.wahingoton.nguyen51.quizdroid.Controller.updateCorrectCount
 import edu.wahingoton.nguyen51.quizdroid.JsonQuiz
 import kotlinx.android.synthetic.main.activity_answer.*
+import kotlinx.android.synthetic.main.app_bar.*
 
 class AnswerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
+        setSupportActionBar(AppBar)
 
         var topic: JsonQuiz = intent.getSerializableExtra("topic") as JsonQuiz
         var userAnswer = intent.getIntExtra("answer", 0)

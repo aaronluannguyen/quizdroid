@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AppBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#4653e7"
+    android:theme="@style/AppTheme.PopupOverlay">
+
+    <TextView
+        android:id="@+id/AppBarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="QuizDroid"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse" />
+</android.support.v7.widget.Toolbar>

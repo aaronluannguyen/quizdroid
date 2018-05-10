@@ -14,6 +14,7 @@ import edu.wahingoton.nguyen51.quizdroid.QuizApp
 import edu.wahingoton.nguyen51.quizdroid.QuizItemAdapter
 import edu.wahingoton.nguyen51.quizdroid.R
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar.*
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setSupportActionBar(AppBar)
 
         var file = File("./sdcard/questions.json")
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
