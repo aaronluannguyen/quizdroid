@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(AppBar)
+        preferencesIcon.setOnClickListener{
+            val intent = Intent(this, Preferences::class.java)
+            startActivity(intent)
+        }
 
         var file = File("./sdcard/questions.json")
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
