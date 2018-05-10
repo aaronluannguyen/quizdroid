@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import com.google.gson.Gson
 import edu.wahingoton.nguyen51.quizdroid.JsonQuiz
 import edu.wahingoton.nguyen51.quizdroid.QuizApp
+import edu.wahingoton.nguyen51.quizdroid.QuizItemAdapter
 import edu.wahingoton.nguyen51.quizdroid.R
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         for (i in quizzes.indices) {
             formatQuiz[i] = quizzes[i].title
         }
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, formatQuiz)
+        val adapter = QuizItemAdapter(this, QuizApp.quizzes)
         QuizList.adapter = adapter
 
         QuizList.setOnItemClickListener {_, _, position, _ ->
