@@ -45,11 +45,11 @@ class Answer : Fragment() {
         var curr: Int = this.topic?.qIndex as Int
         var currQuestion = this.topic?.questions?.get(curr)
         var correctAnswer = currQuestion?.answers?.get(currQuestion?.answer?.minus(1) as Int)
-        var correctAnswerInt = uAnswer?.minus(1)
+        var correctAnswerInt = currQuestion?.answer
         CorrectAnswer.setText("Correct Answer: " + correctAnswer)
         UserAnswer.setText("Your Answer: " + currQuestion?.answers?.get(correctAnswerInt as Int))
 
-        updateCorrectCount(topic as JsonQuiz, correctAnswerInt?.plus(1), uAnswer as Int)
+        updateCorrectCount(topic as JsonQuiz, correctAnswerInt as Int, uAnswer as Int)
 
         CorrectVsTotal.setText("You have " + topic?.correct.toString() + " out of " + (topic?.qIndex as Int + 1).toString() + " correct!")
 
