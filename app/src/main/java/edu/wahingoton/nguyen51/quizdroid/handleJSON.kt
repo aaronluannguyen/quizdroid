@@ -6,10 +6,13 @@ data class JsonQuiz (
     val title: String?,
     val desc: String?,
     val questions: List<JsonQuestion>?
-): Serializable
+): Serializable {
+    var correct: Int = 0
+    var qIndex: Int = 0
+}
 
 data class JsonQuestion (
-    val question: String?,
-    val correctAnswer: Int?,
+    val text: String?,
+    val answer: Int?,
     val answers: Array<String>?
 ): Serializable

@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import edu.wahingoton.nguyen51.quizdroid.Controller.handleAnswerSubmit
+import edu.wahingoton.nguyen51.quizdroid.JsonQuiz
 import edu.wahingoton.nguyen51.quizdroid.R
-import edu.wahingoton.nguyen51.quizdroid.TopicRepository
 import kotlinx.android.synthetic.main.activity_quiz.*
 
 /**
@@ -22,13 +22,13 @@ import kotlinx.android.synthetic.main.activity_quiz.*
  */
 class Question : Fragment() {
     // TODO: Rename and change types of parameters
-    private var topic: TopicRepository.Quiz? = null
+    private var topic: JsonQuiz? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            topic = it.getSerializable("topic") as TopicRepository.Quiz
+            topic = it.getSerializable("topic") as JsonQuiz
         }
     }
 
@@ -40,18 +40,19 @@ class Question : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val question = this.topic?.questions
+        val questions = this.topic?.questions
         val curr = this.topic?.qIndex
+        val question = questions?.get(curr as Int)
         btnSubmit.isClickable = false
-        Question.setText(question?.get(topic?.qIndex as Int)?.question)
-        choice1.setText(question?.get(curr as Int)?.choice1)
-        choice2.setText(question?.get(curr as Int)?.choice2)
-        choice3.setText(question?.get(curr as Int)?.choice3)
-        choice4.setText(question?.get(curr as Int)?.choice4)
+        Question.setText(question?.text)
+        choice1.setText(question?.answers?.get(0))
+        choice2.setText(question?.answers?.get(1))
+        choice3.setText(question?.answers?.get(2))
+        choice4.setText(question?.answers?.get(3))
 
         btnSubmit.setOnClickListener {
             val answer = handleAnswerSubmit(choice1,choice2, choice3, choice4)
-            if (answer != "") {
+            if (answer != 0) {
                 btnSubmit.isClickable = true
                 listener?.toAnswerFragment(this.topic, answer)
             }
@@ -84,6 +85,6 @@ class Question : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        fun toAnswerFragment(topic: TopicRepository.Quiz?, answer: String)
+        fun toAnswerFragment(topic: JsonQuiz?, answer: Int)
     }
 }

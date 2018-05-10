@@ -5,7 +5,7 @@ import edu.wahingoton.nguyen51.quizdroid.R
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import edu.wahingoton.nguyen51.quizdroid.Controller.updateCorrectCount
-import edu.wahingoton.nguyen51.quizdroid.TopicRepository
+import edu.wahingoton.nguyen51.quizdroid.JsonQuiz
 import kotlinx.android.synthetic.main.activity_answer.*
 
 class AnswerActivity : AppCompatActivity() {
@@ -14,8 +14,8 @@ class AnswerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
 
-        var topic: TopicRepository.Quiz = intent.getSerializableExtra("topic") as TopicRepository.Quiz
-        var userAnswer = intent.getStringExtra("answer")
+        var topic: JsonQuiz = intent.getSerializableExtra("topic") as JsonQuiz
+        var userAnswer = intent.getIntExtra("answer", 0)
 
         setAnswerScreen(topic, userAnswer)
 
@@ -33,8 +33,8 @@ class AnswerActivity : AppCompatActivity() {
         }
     }
 
-    fun setAnswerScreen(topic: TopicRepository.Quiz, uAnswer: String) {
-        var correctAnswer = topic.questions.get(topic.qIndex).correctAnswer
+    fun setAnswerScreen(topic: JsonQuiz, uAnswer: Int) {
+        var correctAnswer = topic.questions?.get(topic.qIndex)?.answer
         CorrectAnswer.setText("Correct Answer: " + correctAnswer)
         UserAnswer.setText("Your Answer: " + uAnswer)
 
@@ -42,7 +42,7 @@ class AnswerActivity : AppCompatActivity() {
 
         CorrectVsTotal.setText("You have " + topic.correct.toString() + " out of " + (topic.qIndex + 1).toString() + " correct!")
 
-        if (topic.qIndex == topic.questions.size - 1) {
+        if (topic.qIndex == topic.questions?.size?.minus(1)) {
             btnNextFinish.setText("Finish")
         }
     }

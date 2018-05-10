@@ -1,5 +1,6 @@
 package edu.wahingoton.nguyen51.quizdroid.Views
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -35,5 +36,13 @@ class MainActivity : AppCompatActivity() {
         }
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, formatQuiz)
         QuizList.adapter = adapter
+
+        QuizList.setOnItemClickListener {_, _, position, _ ->
+            val quiz = QuizApp.quizzes[position]
+            val intent = Intent(this, QuizFragmentsActivity::class.java).apply {
+                putExtra("topic", quiz)
+            }
+            startActivity(intent)
+        }
     }
 }

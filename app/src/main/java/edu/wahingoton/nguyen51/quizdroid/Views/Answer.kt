@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import edu.wahingoton.nguyen51.quizdroid.Controller.updateCorrectCount
+import edu.wahingoton.nguyen51.quizdroid.JsonQuiz
 import edu.wahingoton.nguyen51.quizdroid.R
-import edu.wahingoton.nguyen51.quizdroid.TopicRepository
 import kotlinx.android.synthetic.main.activity_answer.*
 
 /**
@@ -22,15 +22,15 @@ import kotlinx.android.synthetic.main.activity_answer.*
  */
 class Answer : Fragment() {
     // TODO: Rename and change types of parameters
-    private var topic: TopicRepository.Quiz? = null
-    private var uAnswer: String? = null
+    private var topic: JsonQuiz? = null
+    private var uAnswer: Int? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            topic = it.getSerializable("topic") as TopicRepository.Quiz
-            uAnswer = it.getString("answer") as String
+            topic = it.getSerializable("topic") as JsonQuiz
+            uAnswer = it.getInt("answer")
         }
     }
 
@@ -42,11 +42,14 @@ class Answer : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        var correctAnswer = this.topic?.questions?.get(topic?.qIndex as Int)?.correctAnswer
+        var curr: Int = this.topic?.qIndex as Int
+        var currQuestion = this.topic?.questions?.get(curr)
+        var correctAnswer = currQuestion?.answers?.get(currQuestion?.answer?.minus(1) as Int)
+        var correctAnswerInt = uAnswer?.minus(1)
         CorrectAnswer.setText("Correct Answer: " + correctAnswer)
-        UserAnswer.setText("Your Answer: " + uAnswer)
+        UserAnswer.setText("Your Answer: " + currQuestion?.answers?.get(correctAnswerInt as Int))
 
-        updateCorrectCount(topic as TopicRepository.Quiz, correctAnswer as String, uAnswer as String)
+        updateCorrectCount(topic as JsonQuiz, correctAnswerInt?.plus(1), uAnswer as Int)
 
         CorrectVsTotal.setText("You have " + topic?.correct.toString() + " out of " + (topic?.qIndex as Int + 1).toString() + " correct!")
 
@@ -90,7 +93,7 @@ class Answer : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        fun startQuizFrag(topic: TopicRepository.Quiz?)
+        fun startQuizFrag(topic: JsonQuiz?)
         fun finishQuiz()
     }
 }
