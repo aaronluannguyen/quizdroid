@@ -15,7 +15,10 @@ class QuizActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
         setSupportActionBar(AppBar)
-
+        preferencesIcon.setOnClickListener{
+            val intent = Intent(this, Preferences::class.java)
+            startActivity(intent)
+        }
 
         val topic: TopicStruct = intent.getSerializableExtra("topic") as TopicStruct
 

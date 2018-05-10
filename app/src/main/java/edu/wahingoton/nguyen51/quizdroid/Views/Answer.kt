@@ -10,6 +10,7 @@ import edu.wahingoton.nguyen51.quizdroid.Controller.updateCorrectCount
 import edu.wahingoton.nguyen51.quizdroid.JsonQuiz
 import edu.wahingoton.nguyen51.quizdroid.R
 import kotlinx.android.synthetic.main.activity_answer.*
+import kotlinx.android.synthetic.main.app_bar.*
 
 /**
  * A simple [Fragment] subclass.
@@ -65,6 +66,9 @@ class Answer : Fragment() {
                 listener?.finishQuiz()
             }
         }
+        preferencesIcon.setOnClickListener{
+            listener?.toPreferences()
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -95,5 +99,6 @@ class Answer : Fragment() {
     interface OnFragmentInteractionListener {
         fun startQuizFrag(topic: JsonQuiz?)
         fun finishQuiz()
+        fun toPreferences()
     }
 }

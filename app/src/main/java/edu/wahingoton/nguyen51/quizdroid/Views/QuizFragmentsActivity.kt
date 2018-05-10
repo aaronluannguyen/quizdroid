@@ -6,6 +6,7 @@ import android.os.Bundle
 import edu.wahingoton.nguyen51.quizdroid.JsonQuiz
 import edu.wahingoton.nguyen51.quizdroid.R
 import edu.wahingoton.nguyen51.quizdroid.TopicRepository
+import kotlinx.android.synthetic.main.app_bar.*
 
 
 class QuizFragmentsActivity : AppCompatActivity(), TopicOverview.OnFragmentInteractionListener, Question.OnFragmentInteractionListener, Answer.OnFragmentInteractionListener {
@@ -50,6 +51,11 @@ class QuizFragmentsActivity : AppCompatActivity(), TopicOverview.OnFragmentInter
 
     override fun finishQuiz() {
         val intent = Intent(this, MainActivity::class.java).apply {}
+        startActivity(intent)
+    }
+
+    override fun toPreferences() {
+        val intent = Intent(this, Preferences::class.java)
         startActivity(intent)
     }
 }

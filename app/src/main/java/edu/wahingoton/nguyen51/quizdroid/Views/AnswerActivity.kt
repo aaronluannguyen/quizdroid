@@ -15,6 +15,10 @@ class AnswerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
         setSupportActionBar(AppBar)
+        preferencesIcon.setOnClickListener{
+            val intent = Intent(this, Preferences::class.java)
+            startActivity(intent)
+        } 
 
         var topic: JsonQuiz = intent.getSerializableExtra("topic") as JsonQuiz
         var userAnswer = intent.getIntExtra("answer", 0)

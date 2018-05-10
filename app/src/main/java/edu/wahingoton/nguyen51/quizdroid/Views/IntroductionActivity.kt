@@ -14,6 +14,10 @@ class IntroductionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_introduction)
         setSupportActionBar(AppBar)
+        preferencesIcon.setOnClickListener{
+            val intent = Intent(this, Preferences::class.java)
+            startActivity(intent)
+        }
 
         val topic: TopicStruct = intent.getSerializableExtra("topic") as TopicStruct
 

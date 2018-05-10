@@ -3,12 +3,14 @@ package edu.wahingoton.nguyen51.quizdroid.Views
 import android.content.Context
 import android.os.Bundle
 import android.app.Fragment
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import edu.wahingoton.nguyen51.quizdroid.JsonQuiz
 import edu.wahingoton.nguyen51.quizdroid.R
 import kotlinx.android.synthetic.main.activity_introduction.*
+import kotlinx.android.synthetic.main.app_bar.*
 
 /**
  * A simple [Fragment] subclass.
@@ -45,6 +47,9 @@ class TopicOverview : Fragment() {
         btnBegin.setOnClickListener{
             listener?.startQuizFrag(this.topic)
         }
+        preferencesIcon.setOnClickListener{
+            listener?.toPreferences()
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -74,5 +79,6 @@ class TopicOverview : Fragment() {
      */
     interface OnFragmentInteractionListener {
         fun startQuizFrag(topic: JsonQuiz?)
+        fun toPreferences()
     }
 }

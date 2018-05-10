@@ -11,5 +11,6 @@ class Preferences : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_preferences)
         setSupportActionBar(AppBar)
+
     }
 }
