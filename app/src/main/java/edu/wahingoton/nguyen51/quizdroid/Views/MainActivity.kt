@@ -29,18 +29,19 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        var file = File("./sdcard/questions.json")
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+            }
         }
 
+        var file = File("./sdcard/questions.json")
         val gson = Gson()
         val quizzes: Array<JsonQuiz> = gson.fromJson(file.reader(), Array<JsonQuiz>::class.java)
         QuizApp.quizzes = quizzes
-
-        val formatQuiz = arrayOfNulls<String?>(quizzes.size)
-        for (i in quizzes.indices) {
-            formatQuiz[i] = quizzes[i].title
+        val formatQuiz = arrayOfNulls<String?>(QuizApp.quizzes.size)
+        for (i in QuizApp.quizzes.indices) {
+            formatQuiz[i] = QuizApp.quizzes[i].title
         }
         val adapter = QuizItemAdapter(this, QuizApp.quizzes)
         QuizList.adapter = adapter
