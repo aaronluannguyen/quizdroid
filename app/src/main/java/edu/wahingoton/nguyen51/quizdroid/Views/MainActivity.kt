@@ -11,8 +11,7 @@ import edu.wahingoton.nguyen51.quizdroid.JsonQuiz
 import edu.wahingoton.nguyen51.quizdroid.QuizApp
 import edu.wahingoton.nguyen51.quizdroid.QuizItemAdapter
 import edu.wahingoton.nguyen51.quizdroid.R
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar.*
+import edu.wahingoton.nguyen51.quizdroid.R.id.*
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
